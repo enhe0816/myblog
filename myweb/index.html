@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人网站</title>
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 添加页眉 -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="#">Simon's Blog</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#gallery">作品集</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 添加粒子效果容器 -->
+    <div id="particles-js"></div>
+    
+    <!-- 轮播图区域 -->
+    <section id="home" class="hero-section">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('./imgs/1.jpg')">
+                    <div class="slide-content">
+                        <h2>欢迎来到我的世界</h2>
+                        <p>这里是我的个人空间，记录生活的点点滴滴</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('./imgs/2.jpg')">
+                    <div class="slide-content">
+                        <h2>摄影作品集</h2>
+                        <p>捕捉生活中的美好瞬间</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('./imgs/3.jpg')">
+                    <div class="slide-content">
+                        <h2>旅行足迹</h2>
+                        <p>记录每一段精彩旅程</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- 照片展示区 -->
+    <section id="gallery" class="gallery-section">
+        <div class="gallery-container">
+            <div class="gallery-category">
+                <h3>旅行摄影</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="./imgs/1.png" alt="旅行照片1">
+                        <div class="item-info">
+                            <h4>自然风光</h4>
+                            <p>大自然的鬼斧神工</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-weibo"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./imgs/t2.jpg" alt="旅行照片2">
+                        <div class="item-info">
+                            <h4>城市掠影</h4>
+                            <p>现代都市的魅力</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-weibo"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./imgs/t3.jpg" alt="旅行照片3">
+                        <div class="item-info">
+                            <h4>人文纪实</h4>
+                            <p>记录生活百态</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-weibo"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 个人信息介绍区 -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2>关于我</h2>
+            <div class="about-content">
+                <div class="profile-info">
+                    <p>这里是个人简介内容...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 添加页脚 -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>联系方式</h4>
+                <p><i class="fas fa-envelope"></i> Email: your.email@example.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 地址: 城市, 国家</p>
+            </div>
+            <div class="footer-section">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#home">返回顶部</a></li>
+                    <li><a href="#gallery">作品集</a></li>
+                    <li><a href="#about">关于我</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>关注我</h4>
+                <div class="footer-social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Simon's Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AI对话区域 -->
+    <div class="ai-chat-container" id="aiChat">
+        <div class="chat-header" id="chatHeader">
+            <h3>AI助手</h3>
+            <div class="header-controls">
+                <button class="settings-btn"><i class="fas fa-cog"></i></button>
+                <i class="fas fa-arrows-alt drag-handle"></i>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- 消息将在这里动态添加 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="输入您的问题...">
+            <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Swiper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <!-- 自定义脚本 -->
+    <script src="script.js"></script>
+</body>
+</html> 
