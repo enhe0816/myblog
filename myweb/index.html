@@ -4,15 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人网站</title>
-    <!-- Swiper CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- 自定义样式 -->
+    <script>
+        // 在页面加载前检查并应用主题
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+    <!-- DNS 预解析 -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- 预连接 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- 预加载关键图片 -->
+    <link rel="preload" as="image" href="./imgs/1.jpg">
+    <link rel="preload" as="image" href="./imgs/2.jpg">
+
+    <!-- 关键 CSS 内联 -->
+    <style>
+        /* 添加首屏关键样式 */
+        body { margin: 0; padding: 0; }
+        .hero-section { height: 42vh; }
+        .site-header { position: fixed; top: 0; width: 100%; }
+    </style>
+
+    <!-- CSS 文件（移除重复加载） -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/solid.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/fontawesome.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 添加页眉 -->
+    <!-- 添加粒子容器 -->
+    <div id="particles-js"></div>
+
+    <!-- 页眉 -->
     <header class="site-header">
         <nav class="nav-container">
             <div class="logo">
@@ -24,15 +53,19 @@
                 <li><a href="#about">关于我</a></li>
                 <li><a href="#contact">联系方式</a></li>
             </ul>
-            <div class="theme-toggle">
-                <i class="fas fa-moon"></i>
+            <div class="theme-toggle" role="button" tabindex="0" aria-label="切换深色/浅色主题">
+                <!-- 月亮图标 -->
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 384 512" aria-hidden="true">
+                    <path fill="currentColor" d="M223.5 32C100 32 0 132.3 0 256s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/>
+                </svg>
+                <!-- 太阳图标 -->
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512" aria-hidden="true">
+                    <path fill="currentColor" d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/>
+                </svg>
             </div>
         </nav>
     </header>
 
-    <!-- 添加粒子效果容器 -->
-    <div id="particles-js"></div>
-    
     <!-- 轮播图区域 -->
     <section id="home" class="hero-section">
         <div class="swiper hero-swiper">
@@ -44,6 +77,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide" style="background-image: url('./imgs/2.jpg')">
+                    <img src="./imgs/2.jpg" loading="lazy" alt="摄影作品集">
                     <div class="slide-content">
                         <h2>摄影作品集</h2>
                         <p>捕捉生活中的美好瞬间</p>
@@ -67,36 +101,26 @@
                 <h3>旅行摄影</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="./imgs/1.png" alt="旅行照片1">
+                        <img src="./imgs/1.jpg" alt="旅行照片1">
                         <div class="item-info">
                             <h4>自然风光</h4>
                             <p>大自然的鬼斧神工</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-weibo"></i></a>
-                            </div>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="./imgs/t2.jpg" alt="旅行照片2">
+                        <img src="./imgs/2.jpg" alt="旅行照片2">
                         <div class="item-info">
                             <h4>城市掠影</h4>
                             <p>现代都市的魅力</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-weibo"></i></a>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="./imgs/t3.jpg" alt="旅行照片3">
+                        <img src="./imgs/3.jpg" alt="旅行照片3">
                         <div class="item-info">
                             <h4>人文纪实</h4>
                             <p>记录生活百态</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-weibo"></i></a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -116,13 +140,13 @@
         </div>
     </section>
 
-    <!-- 添加页脚 -->
+    <!-- 页脚 -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>联系方式</h4>
                 <p><i class="fas fa-envelope"></i> Email: your.email@example.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> 地址: 城市, 国家</p>
+                <p><i class="fas fa-map-marker-alt"></i> 地址: 深圳, 中国</p>
             </div>
             <div class="footer-section">
                 <h4>快速链接</h4>
@@ -135,9 +159,15 @@
             <div class="footer-section">
                 <h4>关注我</h4>
                 <div class="footer-social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-weibo"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="GitHub">
+                        <svg viewBox="0 0 496 512" width="24" height="24">
+                            <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
+                    </a>
+                    <a href="#" title="微博">
+                        <svg viewBox="0 0 512 512" width="24" height="24">
+                            <path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -151,24 +181,37 @@
         <div class="chat-header" id="chatHeader">
             <h3>AI助手</h3>
             <div class="header-controls">
-                <button class="settings-btn"><i class="fas fa-cog"></i></button>
-                <i class="fas fa-arrows-alt drag-handle"></i>
+                <!-- 设置按钮 -->
+                <button class="settings-btn" aria-label="设置">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/>
+                    </svg>
+                </button>
+                <!-- 拖动图标 -->
+                <button class="drag-handle" aria-label="拖动对话框">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4V224H109.3l9.4-9.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4H224V402.7l-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4V288H402.7l-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4H288V109.3l9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z"/>
+                    </svg>
+                </button>
             </div>
         </div>
         <div class="chat-messages" id="chatMessages">
             <!-- 消息将在这里动态添加 -->
         </div>
         <div class="chat-input">
-            <input type="text" id="userInput" placeholder="输入您的问题...">
-            <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="userInput" placeholder="输入您的问题..." aria-label="聊天输入框">
+            <!-- 发送按钮 -->
+            <button class="send-btn" aria-label="发送消息">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                </svg>
+            </button>
         </div>
     </div>
 
-    <!-- Swiper JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- particles.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <!-- 自定义脚本 -->
-    <script src="script.js"></script>
+    <!-- 脚本 -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html> 

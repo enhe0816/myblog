@@ -8,11 +8,12 @@
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
     padding-top: 60px;
     position: relative;
+    background: linear-gradient(180deg, #f0f4f8 0%, #e8f1f8 100%);
 }
 
 /* 轮播图区域 */
@@ -383,8 +384,52 @@ body {
 
 .theme-toggle {
     cursor: pointer;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle svg {
     color: #666;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: scale(1.1);
+}
+
+.dark-theme .theme-toggle svg {
+    color: #fff;
+}
+
+.sun-icon {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.moon-icon {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dark-theme .moon-icon {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dark-theme .sun-icon {
+    opacity: 1;
+    visibility: visible;
+    position: static;
 }
 
 /* 页脚样式 */
@@ -492,4 +537,78 @@ body {
 .ai-chat-container.dragging {
     opacity: 0.8;
     transition: none;
+}
+
+.footer-social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.footer-social-links a {
+    color: #ccc;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social-links a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* 深色主题样式 */
+.dark-theme {
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff;
+}
+
+.dark-theme .site-header {
+    background: rgba(30, 30, 30, 0.9);
+}
+
+.dark-theme .logo a,
+.dark-theme .nav-links a {
+    color: #fff;
+}
+
+.dark-theme .nav-links a:hover {
+    color: #4a90e2;
+}
+
+.dark-theme .gallery-item,
+.dark-theme .about-section {
+    background: rgba(40, 40, 40, 0.9);
+}
+
+.dark-theme .item-info {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+.dark-theme .ai-chat-container {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+.dark-theme .chat-header {
+    background: #1a1a1a;
+}
+
+.dark-theme .chat-input input {
+    background: #3d3d3d;
+    color: #fff;
+    border-color: #4a4a4a;
+}
+
+.dark-theme .send-btn,
+.dark-theme .settings-btn {
+    color: #fff;
+}
+
+/* 调整粒子颜色 */
+.dark-theme #particles-js {
+    background-color: #1a1a1a;
 }
